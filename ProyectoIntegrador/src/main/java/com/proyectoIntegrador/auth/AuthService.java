@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,8 @@ public class AuthService {
 
 	public AuthResponse login(LoginRequest request) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails user=userRepository.findByUsername(request.getUsername()).orElseThrow();
-        Usuario usu = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        UserDetails user=userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        Usuario usu = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         String token=jwtService.getToken(user);
         return AuthResponse.builder()
             .token(token)
