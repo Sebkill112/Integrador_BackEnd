@@ -1,5 +1,7 @@
 package com.proyectoIntegrador.auth;
 
+import java.text.ParseException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class AuthController {
 	}
 
 	@PostMapping(value = "register")
-	public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+	public ResponseEntity<?> register(@RequestBody RegisterRequest request) throws ParseException {
 		return ResponseEntity.ok(authService.register(request));
 	}
 }

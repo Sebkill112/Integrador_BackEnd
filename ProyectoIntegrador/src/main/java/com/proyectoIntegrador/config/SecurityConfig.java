@@ -36,10 +36,7 @@ public class SecurityConfig {
                 .disable())
             .authorizeHttpRequests(authRequest ->
               authRequest
-                .requestMatchers("/auth/**").permitAll()
-                ).authorizeHttpRequests(authRequest2 ->
-              authRequest2.
-              requestMatchers("/prueba/**").hasAuthority("ADMIN").anyRequest().authenticated()
+                .requestMatchers("/auth/**").permitAll().anyRequest().authenticated()
                 ).
             sessionManagement(sessionManager->
                 sessionManager 

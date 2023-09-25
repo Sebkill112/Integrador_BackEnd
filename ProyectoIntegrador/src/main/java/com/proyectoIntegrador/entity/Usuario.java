@@ -36,8 +36,6 @@ public class Usuario implements UserDetails {
 	private String dni;
 	@Column(name = "direccion")
 	private String direccion;
-	@Column(name = "fecha_nac")
-	private LocalDate fecha;
 	@Column(name = "correo")
 	private String correo;
 	@Column(name = "username")
@@ -109,14 +107,6 @@ public class Usuario implements UserDetails {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
-	}
-
-	public LocalDate getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
 	}
 
 	public String getCorreo() {

@@ -1,6 +1,9 @@
 package com.proyectoIntegrador.auth;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,10 +41,11 @@ public class AuthService {
 
 	}
 	
-	public String register(RegisterRequest request) {
+	public String register(RegisterRequest request) throws ParseException {
 		String mensaje= "";
 		
 		Usuario existente = null;
+		
 		
 		if(userRepository.existsByCorreo(request.getCorreo())) {
 			mensaje = "El Usuario con Correo: " + request.getCorreo() + " ya esta registrado";
@@ -54,7 +58,6 @@ public class AuthService {
 			user.setCorreo(request.getCorreo());
 			user.setUsername(request.getUsername());
 			user.setDireccion(request.getDireccion());
-			user.setFecha(LocalDate.parse(request.getFecha()));
 			user.setClave(passwordEncoder.encode( request.getPassword()));
 			Rol rol = new Rol();
 			rol.setCodigo(request.getRol());
