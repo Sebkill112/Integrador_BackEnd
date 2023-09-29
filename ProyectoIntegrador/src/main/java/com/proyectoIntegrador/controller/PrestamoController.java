@@ -30,7 +30,7 @@ public class PrestamoController {
 	@Autowired
 	private PrestamoHasLibroService servicioDetalle;
 	
-	@PostMapping(value = "registro")
+	/*@PostMapping(value = "registro")
 	@ResponseBody
 	public ResponseEntity<String> registrarPrestamo(@RequestBody Prestamo prestamo) {
         // Primero, guarda el préstamo en la base de datos
@@ -46,7 +46,7 @@ public class PrestamoController {
         // Utiliza tu servicio de correo electrónico configurado previamente
         
         return ResponseEntity.ok("Préstamo registrado exitosamente.");
-    }
+    }*/
 	
 	
 	@GetMapping(value = "listado")

@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "detalledevolucion")
+@Table(name = "detalle_devolucion")
 public class DevolucionHasLibro implements Serializable {
 
 	@EmbeddedId
