@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.proyectoIntegrador.entity.Libro;
 import com.proyectoIntegrador.entity.Prestamo;
+import com.proyectoIntegrador.entity.PrestamoHasLibro;
+import com.proyectoIntegrador.entity.PrestamoHasLibroPK;
+import com.proyectoIntegrador.interfaces.PrestamoHasLibroRepository;
 import com.proyectoIntegrador.interfaces.PrestamoRepository;
 
 @Service
@@ -14,8 +19,11 @@ public class prestamoService {
 	@Autowired
 	private PrestamoRepository repo;
 	
-	public Prestamo registrar (Prestamo p) {
-		return repo.save(p);
+
+	
+
+	public Prestamo registrar(Prestamo bean) {
+		return repo.save(bean);
 	}
 	
 	public List<Prestamo> listarTodo() {
