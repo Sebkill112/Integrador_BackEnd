@@ -49,9 +49,7 @@ public class Libro {
 	
 	@Column(name="anio_edicion")
 	private String edicion;
-	
-	@Column(name="stock")
-	private int stock;
+
 	
 
 	
