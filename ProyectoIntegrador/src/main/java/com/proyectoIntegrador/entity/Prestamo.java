@@ -58,13 +58,13 @@ public class Prestamo {
 	@Column(name = "estado")
 	private String estado;
 
-	// Relación MUCHOS a UNO "Usuario"
+	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cod_usuario")
 	private Usuario usuario;
+	
 
-	// Relación MUCHOS a UNO "Sede"
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_sede")

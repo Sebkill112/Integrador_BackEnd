@@ -27,16 +27,13 @@ public class PrestamoHasLibro  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
 	
-	//Relación MUCHOS  a UNO "Boleta"
 			@ManyToOne(fetch = FetchType.EAGER)
 			@JsonBackReference
 			@JoinColumn(name="cod_prestamo",referencedColumnName = "cod_prestamo")
-			private Prestamo prestamo;//ASOCI.
+			private Prestamo prestamo;
 	
-	//Relación MUCHOS  a UNO "Medicamento"
 		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name="cod_libro",referencedColumnName = "cod_libro")
-		private Libro libro;//ASOCI.
-
+		private Libro libro;
 
 }
