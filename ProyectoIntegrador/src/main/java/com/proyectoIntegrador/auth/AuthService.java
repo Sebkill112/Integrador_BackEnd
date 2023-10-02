@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.proyectoIntegrador.entity.Enlace;
 import com.proyectoIntegrador.entity.Rol;
 import com.proyectoIntegrador.entity.Usuario;
 import com.proyectoIntegrador.interfaces.UserRepository;
@@ -27,6 +29,12 @@ public class AuthService {
 	private final JwtService jwtService;
 	 private final PasswordEncoder passwordEncoder;
 	 private final AuthenticationManager authenticationManager;
+	 
+	 
+	 public List<Enlace> enlacesDelUsuario(int rol){
+			return userRepository.traerEnlacesDelUsuario(rol);
+		}
+	 
 
 	public AuthResponse login(LoginRequest request) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
