@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "sede")
 public class Sede {
@@ -37,6 +36,13 @@ public class Sede {
 	@OneToMany(mappedBy = "sede")
 	@JsonIgnore
 	private List<Prestamo> listaPrestamo;
+
+	@OneToMany(mappedBy = "sedeLibro")
+	@JsonIgnore
+	private List<LibrosPorSede> sedesLibro;
+
+	@Column(name = "estado")
+	private int estado;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -84,6 +90,22 @@ public class Sede {
 
 	public void setListaPrestamo(List<Prestamo> listaPrestamo) {
 		this.listaPrestamo = listaPrestamo;
+	}
+
+	public List<LibrosPorSede> getSedesLibro() {
+		return sedesLibro;
+	}
+
+	public void setSedesLibro(List<LibrosPorSede> sedesLibro) {
+		this.sedesLibro = sedesLibro;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 }

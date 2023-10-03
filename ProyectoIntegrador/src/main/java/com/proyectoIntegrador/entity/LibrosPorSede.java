@@ -23,42 +23,25 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Table(name="libros")
-public class Libro {
-
+@Table(name = "libroshassede")
+public class LibrosPorSede {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="cod_libro")
+	@Column(name="id_libroSede")
 	private Integer codigo;
 	
-	@Column(name="nombre_libro")
-	private String nombre;
-	
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="codigo_libro")
+	private Libro libroSede;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cod_editorial")
-	private Editorial editorial;
+	@JoinColumn(name="codigo_sede")
+	private Sede sedeLibro;
 	
-	@Column(name="autor")
-	private String autor;
-	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cod_genero")
-	private Genero genero;
-	
-	@Column(name="anio_edicion")
-	private String edicion;
-	
-	@OneToMany(mappedBy="libroSede")
-	@JsonIgnore
-	private List<LibrosPorSede> librosSede;
-	
-	@Column(name="estado")
-	private int estado;
+	@Column(name="stock")
+	private int stock;
 
-	
-
-	
 }

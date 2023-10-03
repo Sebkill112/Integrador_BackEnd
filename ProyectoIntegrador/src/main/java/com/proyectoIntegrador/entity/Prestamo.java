@@ -73,5 +73,9 @@ public class Prestamo {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PrestamoHasLibro> detallePrestamo;
+	
+	@Column(name = "observacion")
+	private String observaciones;
+	
 
 }
