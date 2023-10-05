@@ -36,6 +36,7 @@ public class PrestamoController {
 	
 	@PostMapping(value = "registro")
 	@ResponseBody
+	@Transactional
 	 public ResponseEntity<String> registrarPrestamo(@RequestBody PrestamoRequest prestamoRequest) {
         try {
             // Create and save the Prestamo entity

@@ -30,6 +30,10 @@ public class prestamoService {
 		return repo.findAll();
 	}
 	
+	public void ActualizarEstado(String est, String num) {
+		repo.actualizaEstado(est, num);
+	}
+	
 	
 	
 	
