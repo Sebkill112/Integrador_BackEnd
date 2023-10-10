@@ -38,6 +38,14 @@ public class prestamoService {
 		repo.actualizaEstado(est, num);
 	}
 	
+	public void ActualizarObservacion(String obs, String num) {
+		repo.actualizarObservacion(obs, num);
+	}
+	
+	public Prestamo buscarPorNumero (String cod) {
+		return repo.buscarPorNumero(cod);
+	}
+	
 	
 	
 	

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,8 @@ import com.proyectoIntegrador.entity.Libro;
 import com.proyectoIntegrador.entity.Prestamo;
 import com.proyectoIntegrador.entity.PrestamoHasLibro;
 import com.proyectoIntegrador.entity.PrestamoRequest;
+import com.proyectoIntegrador.entity.RetiroRequest;
+import com.proyectoIntegrador.service.LibrosPorSedeService;
 import com.proyectoIntegrador.service.PrestamoHasLibroService;
 import com.proyectoIntegrador.service.prestamoService;
 
@@ -35,6 +38,9 @@ public class PrestamoController {
 	@Autowired
 	private PrestamoHasLibroService servicioDetalle;
 	
+	@Autowired
+	private LibrosPorSedeService servicioLibroPorSede;
+	
 	@PostMapping(value = "registro")
 	@ResponseBody
 	@Transactional
@@ -51,6 +57,12 @@ public class PrestamoController {
                 detalle.setPrestamo(prestamoGuardado);
                 detalle.setLibro(libros.get(i));
                 servicioDetalle.grabar(detalle);
+                
+            }
+            
+            for (int i=0; i < libros.size(); i++) {
+            	
+                servicioLibroPorSede.RestarStockLibro(libros.get(i).getCodigo(),prestamoGuardado.getSede().getCodigo());
                 
             }
 
@@ -75,4 +87,21 @@ public class PrestamoController {
 		List<Prestamo> lista = servicio.listarPorEstado(est);
 		return ResponseEntity.ok(lista);
 	}
+	
+	@PutMapping(value = "retiro")
+	@ResponseBody
+	@Transactional
+	 public ResponseEntity<String> retirarPrestamo(@RequestBody RetiroRequest retiroRequest) {
+        try {
+        	
+        	servicio.ActualizarObservacion(retiroRequest.getObservacion(), retiroRequest.getNumPrestamo());
+        	servicio.ActualizarEstado(retiroRequest.getEstado(), retiroRequest.getNumPrestamo());
+            
+            return ResponseEntity.ok("Préstamo retirado exitosamente.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al registrar el préstamo: " + e.getMessage());
+        }
+	}
+	
 }

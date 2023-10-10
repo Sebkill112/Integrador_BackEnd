@@ -1,7 +1,5 @@
 package com.proyectoIntegrador.entity;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DevolucionRequest {
-	
-	 private Devolucion devolucion;
-	   private List<Libro> detalleDevolucion;
-	   private int codigoSede;
+public class RetiroRequest {
 
+	private String estado;
+	private String numPrestamo;
+	private String observacion;
+	
 }

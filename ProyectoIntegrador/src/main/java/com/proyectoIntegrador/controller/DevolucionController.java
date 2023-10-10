@@ -22,6 +22,7 @@ import com.proyectoIntegrador.entity.PrestamoHasLibro;
 import com.proyectoIntegrador.entity.PrestamoRequest;
 import com.proyectoIntegrador.service.DevolucionHasLibroService;
 import com.proyectoIntegrador.service.DevolucionService;
+import com.proyectoIntegrador.service.LibrosPorSedeService;
 import com.proyectoIntegrador.service.prestamoService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,9 @@ public class DevolucionController {
 	@Autowired
 	private DevolucionHasLibroService serDetalle;
 	
+	@Autowired
+	private LibrosPorSedeService serLibrosPorSede;
+	
 	@GetMapping(value = "listado")
 	@ResponseBody
 	public ResponseEntity<List<Devolucion>> listar(){
@@ -57,13 +61,18 @@ public class DevolucionController {
             Devolucion devolucionGuardado = serDevolucion.registrar(devolucion);
             List<Libro> libros = devolucionRequest.getDetalleDevolucion();
   
- 
+            
             for (int i=0; i < libros.size(); i++) {
                 DevolucionHasLibro detalle = new DevolucionHasLibro();
                 detalle.setDevolucion(devolucionGuardado);
                 detalle.setLibro(libros.get(i));
                 serDetalle.grabar(detalle);
                 
+            }
+            
+            for (int i=0; i < libros.size(); i++) {
+                
+            	serLibrosPorSede.AumentarStockLibro(libros.get(i).getCodigo(), devolucionRequest.getCodigoSede());
             }
             
             serPrestamo.ActualizarEstado("Devuelto", devolucionGuardado.getNum_prestamo() );
