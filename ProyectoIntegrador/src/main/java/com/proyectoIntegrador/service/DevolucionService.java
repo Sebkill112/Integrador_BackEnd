@@ -23,4 +23,8 @@ public class DevolucionService {
 		return repo.save(bean);
 	}
 	
+	public String GenerarCodigo() {
+		return repo.generarNumeroDevolucion();
+	}
+	
 }

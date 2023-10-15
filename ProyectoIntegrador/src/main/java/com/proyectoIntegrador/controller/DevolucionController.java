@@ -84,6 +84,14 @@ public class DevolucionController {
         }
 	}
 	
+	@GetMapping(value = "codigo")
+	@ResponseBody
+	public ResponseEntity<String> correlativo(){
+		String codigo = serDevolucion.GenerarCodigo();
+		
+		return ResponseEntity.ok(codigo);
+	}
+	
 	
 	
 
