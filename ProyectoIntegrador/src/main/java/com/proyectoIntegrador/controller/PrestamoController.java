@@ -104,4 +104,12 @@ public class PrestamoController {
         }
 	}
 	
+	@GetMapping(value = "codigo")
+	@ResponseBody
+	public ResponseEntity<String> correlativo(){
+		String codigo = servicio.GenerarCodigo();
+		
+		return ResponseEntity.ok(codigo);
+	}
+	
 }

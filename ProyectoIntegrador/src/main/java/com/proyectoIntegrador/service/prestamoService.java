@@ -46,6 +46,10 @@ public class prestamoService {
 		return repo.buscarPorNumero(cod);
 	}
 	
+	public String GenerarCodigo() {
+		return repo.generarNumeroPrestamo();
+	}
+	
 	
 	
 	

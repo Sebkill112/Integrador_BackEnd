@@ -25,4 +25,7 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	@Query(value ="update prestamo set observacion =?1 WHERE num_prestamo =?2",nativeQuery = true)
 	public void actualizarObservacion(String observacion,String num);
 
+	@Query(value = "{call sp_generar_numero()}" ,nativeQuery = true)
+	public String generarNumeroPrestamo();
+	
 }
