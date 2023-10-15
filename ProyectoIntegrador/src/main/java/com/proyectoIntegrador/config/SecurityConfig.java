@@ -28,24 +28,22 @@ public class SecurityConfig {
     private final ObjectMapper objectMapper;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception 
-    {
-        return http
-            .csrf(csrf -> 
-                csrf
-                .disable())
-            .authorizeHttpRequests(authRequest ->
-              authRequest
-                .requestMatchers("/auth/**").permitAll().anyRequest().authenticated()
-                ).
-            sessionManagement(sessionManager->
-                sessionManager 
-                  .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+            .cors() // Habilitar CORS
+            .and()
+            .authorizeHttpRequests(authRequest -> 
+                authRequest
+                    .requestMatchers("/auth/**").permitAll().anyRequest().authenticated()
+            )
+            .sessionManagement(sessionManager ->
+                sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
             .authenticationProvider(authProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling(exceptionHandling ->
-            exceptionHandling
-                .authenticationEntryPoint((request, response, authException) -> {
+                exceptionHandling.authenticationEntryPoint((request, response, authException) -> {
                     // Respuesta en formato JSON para la autenticación fallida
                     response.setContentType("application/json");
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
@@ -56,10 +54,9 @@ public class SecurityConfig {
                     ObjectMapper objectMapper = new ObjectMapper();
                     objectMapper.writeValue(response.getWriter(), errorResponse);
                 })
-        )
-            .build();
-            
-            
+            );
+
+        return http.build();
     }
     
 
