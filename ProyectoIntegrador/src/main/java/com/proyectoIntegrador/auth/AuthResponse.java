@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 public class AuthResponse {
 
+	int codigo;
 	String username;
 	Rol rol;
 	String token;
