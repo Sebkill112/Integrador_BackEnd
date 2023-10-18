@@ -48,10 +48,13 @@ public class AuthController {
 	@PostMapping(value = "register")
 	public ResponseEntity<String> register(@RequestBody RegisterRequest request) throws ParseException {
 	    
-		userRepository.existsByCorreo(request.getCorreo());
+		  boolean emailExists = userRepository.existsByCorreo(request.getCorreo());
+		   boolean usernameExists = userRepository.existsByUsername(request.getUsername());
 	    
-	    if (userRepository.existsByCorreo(request.getCorreo())) {
+	    if (emailExists) {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El Usuario con Correo: " + request.getCorreo() + " ya está registrado");
+	    }else if (usernameExists){
+	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El Usuario con Username: " + request.getUsername() + " ya está registrado");
 	    }else {
 	    	Usuario user = new Usuario();
 		    userRepository.save(user);

@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<Usuario, Integer>{
 	
 	 boolean existsByCorreo(String correo);
 	 
+	 boolean existsByUsername(String username);
+	 
 	 @Query("select e from RolEnlace re join re.enlace e where re.rol.codigo=?1")
 		public List<Enlace>traerEnlacesDelUsuario(int codigoRol);
 }
