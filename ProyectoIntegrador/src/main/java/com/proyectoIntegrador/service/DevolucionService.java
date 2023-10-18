@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyectoIntegrador.entity.Devolucion;
-import com.proyectoIntegrador.entity.Prestamo;
 import com.proyectoIntegrador.interfaces.DevolucionRepository;
 
 @Service

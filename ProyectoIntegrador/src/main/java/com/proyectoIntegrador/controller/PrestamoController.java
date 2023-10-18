@@ -94,6 +94,8 @@ public class PrestamoController {
 	 public ResponseEntity<String> retirarPrestamo(@RequestBody RetiroRequest retiroRequest) {
         try {
         	
+        	
+        	
         	servicio.ActualizarObservacion(retiroRequest.getObservacion(), retiroRequest.getNumPrestamo());
         	servicio.ActualizarEstado(retiroRequest.getEstado(), retiroRequest.getNumPrestamo());
             

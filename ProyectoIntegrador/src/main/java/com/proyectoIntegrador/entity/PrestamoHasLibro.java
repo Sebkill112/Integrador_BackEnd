@@ -35,5 +35,12 @@ public class PrestamoHasLibro  {
 		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name="cod_libro",referencedColumnName = "cod_libro")
 		private Libro libro;
+		
+		
+		@Column(name = "cod_ejemplar")
+		private Integer ejemplar;
+		
+		@Column(name = "estado")
+		private String estado;
 
 }

@@ -1,5 +1,7 @@
 package com.proyectoIntegrador.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,7 @@ public class RetiroRequest {
 	private String estado;
 	private String numPrestamo;
 	private String observacion;
+	
+	 private List<Ejemplar> ejemplares;
 	
 }

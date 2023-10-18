@@ -55,6 +55,11 @@ public class Libro {
 	@JsonIgnore
 	private List<LibrosPorSede> librosSede;
 	
+	
+	@OneToMany(mappedBy="libroEjemplar")
+	@JsonIgnore
+	private List<Ejemplar> ejemplar;
+	
 	@Column(name="estado")
 	private int estado;
 

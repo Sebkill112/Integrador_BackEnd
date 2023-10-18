@@ -41,6 +41,10 @@ public class Sede {
 	@JsonIgnore
 	private List<LibrosPorSede> sedesLibro;
 
+	@OneToMany(mappedBy = "sedeEjemplar")
+	@JsonIgnore
+	private List<Ejemplar> sedeEjmeplar;
+
 	@Column(name = "estado")
 	private int estado;
 
@@ -106,6 +110,14 @@ public class Sede {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public List<Ejemplar> getSedeEjmeplar() {
+		return sedeEjmeplar;
+	}
+
+	public void setSedeEjmeplar(List<Ejemplar> sedeEjmeplar) {
+		this.sedeEjmeplar = sedeEjmeplar;
 	}
 
 }
