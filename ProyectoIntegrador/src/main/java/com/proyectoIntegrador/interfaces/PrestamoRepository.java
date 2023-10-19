@@ -28,4 +28,8 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	@Query(value = "{call sp_generar_numero()}" ,nativeQuery = true)
 	public String generarNumeroPrestamo();
 	
+	@Modifying
+	@Query(value = "{call RetiroActualizarEstadoYStock(?1,?2,?3,?4)}" ,nativeQuery = true)
+	public void retiroActulizaEstadoStock(int codPres, int codEjem,int codLibro,int codSede);
+	
 }

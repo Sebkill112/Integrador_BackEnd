@@ -46,6 +46,10 @@ public class prestamoService {
 		return repo.buscarPorNumero(cod);
 	}
 	
+	public void RetiroActulizaEstadoStock(int codPres, int codEjem,int codLibro,int codSede) {
+		repo.retiroActulizaEstadoStock(codPres, codEjem, codLibro, codSede);
+	}
+	
 	public String GenerarCodigo() {
 		return repo.generarNumeroPrestamo();
 	}

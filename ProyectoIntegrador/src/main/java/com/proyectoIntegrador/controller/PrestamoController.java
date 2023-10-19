@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectoIntegrador.entity.Ejemplar;
 import com.proyectoIntegrador.entity.Libro;
 import com.proyectoIntegrador.entity.Prestamo;
 import com.proyectoIntegrador.entity.PrestamoHasLibro;
@@ -60,12 +61,6 @@ public class PrestamoController {
                 
             }
             
-            for (int i=0; i < libros.size(); i++) {
-            	
-                servicioLibroPorSede.RestarStockLibro(libros.get(i).getCodigo(),prestamoGuardado.getSede().getCodigo());
-                
-            }
-
             return ResponseEntity.ok("Préstamo registrado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -88,16 +83,24 @@ public class PrestamoController {
 		return ResponseEntity.ok(lista);
 	}
 	
-	@PutMapping(value = "retiro")
+	@PutMapping(value = "retiro/{cod}")
 	@ResponseBody
 	@Transactional
-	 public ResponseEntity<String> retirarPrestamo(@RequestBody RetiroRequest retiroRequest) {
+	 public ResponseEntity<String> retirarPrestamo(@PathVariable("cod")int codPrest,@RequestBody RetiroRequest retiroRequest) {
         try {
         	
         	
         	
         	servicio.ActualizarObservacion(retiroRequest.getObservacion(), retiroRequest.getNumPrestamo());
         	servicio.ActualizarEstado(retiroRequest.getEstado(), retiroRequest.getNumPrestamo());
+        	
+        	List<Ejemplar> ejemplares = retiroRequest.getEjemplares();
+ 
+            for (int i=0; i < ejemplares.size(); i++) {
+               servicio.RetiroActulizaEstadoStock(codPrest, ejemplares.get(i).getCodigo(), 
+            		   ejemplares.get(i).getLibroEjemplar().getCodigo(), retiroRequest.getCodSede());
+                
+            }
             
             return ResponseEntity.ok("Préstamo retirado exitosamente.");
         } catch (Exception e) {

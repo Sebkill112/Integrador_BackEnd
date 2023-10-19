@@ -14,6 +14,7 @@ import lombok.Setter;
 public class RetiroRequest {
 
 	private String estado;
+	private int codSede;
 	private String numPrestamo;
 	private String observacion;
 	
