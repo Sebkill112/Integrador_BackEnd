@@ -12,9 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DevolucionRequest {
-	
-	 private Devolucion devolucion;
-	   private List<Libro> detalleDevolucion;
-	   private int codigoSede;
+
+	private Devolucion devolucion;
+	private int codSede;
+	private List<PrestamoHasLibro> detalleDevolucion;
+	private int codigoSede;
 
 }

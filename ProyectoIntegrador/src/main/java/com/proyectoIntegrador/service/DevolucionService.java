@@ -26,4 +26,8 @@ public class DevolucionService {
 		return repo.generarNumeroDevolucion();
 	}
 	
+	public void DevolucionActualizarEstadoYStock(int codPres, int codEjem,int codLibro,int codSede) {
+		repo.devolucionActualizarEstadoYStock(codPres, codEjem, codLibro, codSede);
+	}
+	
 }

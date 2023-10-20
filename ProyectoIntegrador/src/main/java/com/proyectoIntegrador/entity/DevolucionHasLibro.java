@@ -41,8 +41,6 @@ public class DevolucionHasLibro {
 	@Column(name="cod_ejemplar")
 	private Integer codigoEjemplar;
 	
-	@Column(name="observacion")
-	private String observacion;
 
 
 
