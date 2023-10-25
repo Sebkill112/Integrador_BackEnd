@@ -19,4 +19,12 @@ public class LibroService {
 		
 		return repo.findAll();
 	}
+	
+	public Libro grabarActualizaLibro(Libro libro) {
+		return repo.save(libro);
+	}
+	
+	public void eliminaLibro(int id) {
+		repo.deleteById(id);
+	}
 }

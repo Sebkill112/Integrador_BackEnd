@@ -18,8 +18,8 @@ public class EjemplarService {
 		return repo.listarEjemplaresSedeLibro(lib, est);
 	}
 	
-	public List<Ejemplar> listarEjemplaresPorEstado (int lib , int est, int estado) {
-		return repo.listarEjemplaresSedeLibroEstado(lib, est, estado);
+	public List<Ejemplar> listarEjemplaresPorEstado (int lib , int est ) {
+		return repo.listarEjemplaresSedeLibroEstado(lib, est);
 	}
 	
 

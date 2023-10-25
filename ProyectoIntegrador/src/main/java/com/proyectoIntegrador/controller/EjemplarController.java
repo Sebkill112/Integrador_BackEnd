@@ -32,8 +32,8 @@ public class EjemplarController {
 	
 	@GetMapping(value = "estado")
 	@ResponseBody
-	public ResponseEntity<List<Ejemplar>> listarPorEstados(@RequestParam int libro, @RequestParam int sede, @RequestParam int est){
-		List<Ejemplar> lista = servicio.listarEjemplaresPorEstado(libro,sede, est);
+	public ResponseEntity<List<Ejemplar>> listarPorEstados(@RequestParam int libro, @RequestParam int sede){
+		List<Ejemplar> lista = servicio.listarEjemplaresPorEstado(libro,sede);
 		return ResponseEntity.ok(lista);
 	}
 }

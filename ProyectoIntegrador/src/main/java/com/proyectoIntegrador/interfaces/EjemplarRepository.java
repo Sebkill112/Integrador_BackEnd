@@ -14,6 +14,6 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer>{
 	public List<Ejemplar> listarEjemplaresSedeLibro(int lib, int sed);
 	
 	@Query("select e from Ejemplar e where e.libroEjemplar.codigo = ?1 and e.sedeEjemplar.codigo = ?2 and e.estado = 1")
-	public List<Ejemplar> listarEjemplaresSedeLibroEstado(int lib, int sed, int est);
+	public List<Ejemplar> listarEjemplaresSedeLibroEstado(int lib, int sed);
 	
 }
