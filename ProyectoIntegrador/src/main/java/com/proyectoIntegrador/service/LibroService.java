@@ -20,6 +20,12 @@ public class LibroService {
 		return repo.findAll();
 	}
 	
+	
+public List<Libro> listadoLibrosPorGenero (int cod) {
+		
+		return repo.buscarPorGenero(cod);
+	}
+	
 	public Libro grabarActualizaLibro(Libro libro) {
 		return repo.save(libro);
 	}

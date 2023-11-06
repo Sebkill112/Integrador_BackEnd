@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectoIntegrador.entity.Libro;
-import com.proyectoIntegrador.entity.Prestamo;
 import com.proyectoIntegrador.entity.Sede;
-import com.proyectoIntegrador.service.LibroService;
 import com.proyectoIntegrador.service.SedeService;
 
 import lombok.RequiredArgsConstructor;
@@ -52,7 +48,7 @@ public class SedeController {
 	public ResponseEntity<Map<String, Object>> actualizaDocente(@RequestBody Sede obj) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			Sede objSalida =  servicio.actualizar(obj);
+			Sede objSalida =  servicio.registrar(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", "No se actualizó, consulte con el administrador.");
 			} else {
@@ -70,7 +66,7 @@ public class SedeController {
 	public ResponseEntity<Map<String, Object>> eliminaDocente(@PathVariable("id") int id) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			servicio.eliminarPorID(id);
+			servicio.eliminaSede(id);
 			salida.put("mensaje", "Se elimino la sede correctamente.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,17 +76,6 @@ public class SedeController {
 	}
 
     
-    @GetMapping("/buscar/{cod}")
-	public ResponseEntity<Sede> buscar(@PathVariable("cod") Integer codi){
-		//buscar còdigo
-    	Sede sede=servicio.buscarPorID(codi);
-		//validar
-		if(sede==null)
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		else
-			sede=servicio.buscarPorID(codi);
-			
-		return new ResponseEntity<>(sede,HttpStatus.OK);
-	}
+   
     
 }

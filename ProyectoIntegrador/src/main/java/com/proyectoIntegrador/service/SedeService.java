@@ -20,4 +20,12 @@ public class SedeService {
 		
 	}
 	
+	public Sede registrar(Sede sede) {
+		return repo.save(sede);
+	}
+	
+	public void eliminaSede(int id) {
+		repo.deleteById(id);
+	}
+	
 }

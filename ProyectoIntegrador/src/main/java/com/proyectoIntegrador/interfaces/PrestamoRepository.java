@@ -18,7 +18,7 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	@Query("select p from Prestamo p  where p.estado=?1")
 	public List<Prestamo>listarPorEstado(String est);
 	
-	@Query(value = "select * from prestamo where num_prestamo = ?1;", nativeQuery = true)
+	@Query(value = "select * from prestamo where num_prestamo = ?1", nativeQuery = true)
 	public Prestamo buscarPorNumero(String cod);
 	
 	@Modifying

@@ -35,7 +35,7 @@ public class SecurityConfig {
             .and()
             .authorizeHttpRequests(authRequest -> 
                 authRequest
-                    .requestMatchers("/auth/**").permitAll().anyRequest().authenticated()
+                    .requestMatchers("/auth/**","/bot/**").permitAll().anyRequest().authenticated()
             )
             .sessionManagement(sessionManager ->
                 sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
