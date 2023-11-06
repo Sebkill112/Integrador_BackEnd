@@ -17,7 +17,7 @@ FROM openjdk:17-jre-slim-buster
 EXPOSE 8090
 
 # Copiar el archivo JAR construido desde la etapa anterior
-COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/ProyectoIntegrador-0.0.1-SNAPSHOT.jar /app/ProyectoIntegrador-0.0.1-SNAPSHOT.jar
 
 # Establecer el punto de entrada para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/app/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
