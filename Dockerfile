@@ -14,7 +14,7 @@ RUN mvn clean package
 FROM openjdk:17-jre-slim-buster
 
 # Exponer el puerto que utilizará la aplicación
-EXPOSE 8080
+EXPOSE 8090
 
 # Copiar el archivo JAR construido desde la etapa anterior
 COPY --from=build /app/target/ProyectoIntegrador-0.0.1-SNAPSHOT.jar /app/ProyectoIntegrador-0.0.1-SNAPSHOT.jar
