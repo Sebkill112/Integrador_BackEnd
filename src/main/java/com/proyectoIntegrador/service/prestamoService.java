@@ -54,6 +54,9 @@ public class prestamoService {
 		return repo.generarNumeroPrestamo();
 	}
 	
+	public List<Prestamo> buscarPorUsuario(int cod){
+		return repo.buscarPorUsuario(cod);
+	}
 	
 	
 	

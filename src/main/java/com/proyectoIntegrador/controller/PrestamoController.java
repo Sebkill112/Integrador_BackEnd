@@ -116,5 +116,12 @@ public class PrestamoController {
 		
 		return ResponseEntity.ok(codigo);
 	}
+
+	@GetMapping(value = "historial/{cod}")
+	@ResponseBody
+	public ResponseEntity<List<Prestamo>> listar(@PathVariable("cod")int codUser){
+		List<Prestamo> lista = servicio.buscarPorUsuario(codUser);
+		return ResponseEntity.ok(lista);
+	}
 	
 }

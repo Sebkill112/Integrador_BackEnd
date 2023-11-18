@@ -17,10 +17,15 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	
 	@Query("select p from Prestamo p  where p.estado=?1")
 	public List<Prestamo>listarPorEstado(String est);
+
+	@Query(value = "select x  from Prestamo x where x.usuario.codigo = ?1")
+	public List<Prestamo> buscarPorUsuario(int cod);
 	
 	@Query(value = "select * from prestamo where num_prestamo = ?1", nativeQuery = true)
 	public Prestamo buscarPorNumero(String cod);
-	
+
+	@Query(value = "select x  from Prestamo x where x.usuario.codigo = ?1")
+	public List<Prestamo> buscarPorUsuario(int cod);
 	@Modifying
 	@Query(value ="update prestamo set observacion =?1 WHERE num_prestamo =?2",nativeQuery = true)
 	public void actualizarObservacion(String observacion,String num);
